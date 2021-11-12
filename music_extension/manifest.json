@@ -1,0 +1,22 @@
+{
+    "name": "Sound music",
+    "version": "1.0",
+    "description": "play evil morty themes",
+    "icons": { "16": "icon/icon.png",
+                "48": "icon/icon.png",
+                "128": "icon/icon.png" },
+    "manifest_version": 2,
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["music.js"]
+      }
+    ],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": true
+    },
+    "browser_action": {
+      "default_popup": "main.html"
+    }
+  }
