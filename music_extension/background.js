@@ -1,11 +1,18 @@
-var audio = new Audio("music/evil morty.mp3");
-chrome.runtime.onMessage.addListener(
-    function(message, sender, sendResponse) {
-        if(message == "play") {
-            audio.play();
+var audio
+var check = false
+
+chrome.runtime.onMessage.addListener( (message, sender, sendResponse) => {
+        if(message.requestType == "play") {
+            if(check && !audio.paused) {
+                audio.pause();
+            }
+            audio = new Audio(message.song)
+            audio.play()
+            check = true
         }
-        else if(message == "pause") {
-            audio.pause();
+        else if(message.requestType == "pause") {
+            audio.pause()
+            check = false
         }
     }
 )
